@@ -19,7 +19,7 @@ const pricingTiers = [
   {
     name: "Абонентское обслуживание",
     price: "от 15 000",
-    description: "Ежемесячная поддержка вашей IT-инфраструктуры",
+    description: "Ежемесячная поддержка IT‑инфраструктуры",
     features: [
       "Поддержка пользователей",
       "Администрирование серверов",
@@ -48,25 +48,16 @@ const pricingTiers = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      </div>
-
+    <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            Прозрачные цены
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance">
-            Выберите <span className="text-primary">подходящий формат</span> работы
+        <div className="text-center mb-14">
+          <span className="inline-block text-primary text-sm font-semibold uppercase tracking-widest mb-3">
+            Тарифы
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            Выберите подходящий формат
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Разовые работы, ежемесячное обслуживание или комплексный проект под ключ
           </p>
         </div>
@@ -75,39 +66,39 @@ export function PricingSection() {
           {pricingTiers.map((tier, index) => (
             <Card
               key={index}
-              className={`relative group ${
+              className={`relative group transition-all duration-300 ${
                 tier.highlighted
-                  ? "border-primary shadow-xl scale-105 bg-gradient-to-b from-background to-primary/5"
-                  : "hover:border-primary/50 hover:shadow-lg"
-              } transition-all duration-300`}
+                  ? "border-primary shadow-xl shadow-primary/10 scale-[1.03] bg-card"
+                  : "border-border/60 hover:border-primary/40 hover:shadow-lg"
+              }`}
             >
               {tier.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-semibold shadow-lg">
                   Популярный
                 </div>
               )}
               <CardHeader className="text-center pb-4">
-                <CardTitle className="text-2xl mb-1">{tier.name}</CardTitle>
+                <CardTitle className="text-xl mb-1">{tier.name}</CardTitle>
                 <p className="text-sm text-muted-foreground">{tier.description}</p>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold">
-                    {tier.price === "По запросу" ? (
-                      <span className="text-3xl">{tier.price}</span>
-                    ) : (
-                      <>
-                        <span className="text-lg font-normal text-muted-foreground">от </span>
-                        {tier.price.replace("от ", "")}
-                        <span className="text-lg font-normal text-muted-foreground"> ₽/мес</span>
-                      </>
-                    )}
-                  </span>
+                  {tier.price === "По запросу" ? (
+                    <span className="text-2xl font-bold">{tier.price}</span>
+                  ) : (
+                    <div>
+                      <span className="text-sm font-normal text-muted-foreground">от </span>
+                      <span className="text-3xl font-extrabold">{tier.price.replace("от ", "")}</span>
+                      <span className="text-sm font-normal text-muted-foreground"> ₽/мес</span>
+                    </div>
+                  )}
                 </div>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 mb-8">
                   {tier.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-3 group/item">
-                      <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform" />
+                    <li key={featureIndex} className="flex items-start gap-3">
+                      <div className="p-0.5 rounded-full bg-primary/10 mt-0.5 flex-shrink-0">
+                        <Check className="h-3.5 w-3.5 text-primary" />
+                      </div>
                       <span className="text-sm leading-relaxed">{feature}</span>
                     </li>
                   ))}
@@ -115,7 +106,11 @@ export function PricingSection() {
                 <QuoteFormDialog
                   packageName={tier.name}
                   variant={tier.highlighted ? "default" : "outline"}
-                  className={`w-full ${tier.highlighted ? "shadow-lg shadow-primary/20" : ""}`}
+                  className={`w-full rounded-xl ${
+                    tier.highlighted
+                      ? "bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20"
+                      : ""
+                  }`}
                 >
                   {tier.price === "По запросу" ? "Обсудить проект" : "Выбрать тариф"}
                 </QuoteFormDialog>
@@ -124,7 +119,7 @@ export function PricingSection() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <p className="text-sm text-muted-foreground">
             Все тарифы включают <span className="text-primary font-semibold">бесплатную консультацию</span> и{" "}
             <span className="text-primary font-semibold">аудит текущей инфраструктуры</span>

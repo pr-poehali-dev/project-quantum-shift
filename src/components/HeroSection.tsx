@@ -1,122 +1,95 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles } from "lucide-react"
-import { useEffect, useState } from "react"
+import { ArrowRight, Phone } from "lucide-react"
 import Icon from "@/components/ui/icon"
 
 export function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
-
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute w-[500px] h-[500px] rounded-full bg-muted/40 blur-3xl animate-pulse"
-          style={{ top: "20%", left: "10%", animationDuration: "4s" }}
-        />
-        <div
-          className="absolute w-[400px] h-[400px] rounded-full bg-muted/30 blur-3xl animate-pulse"
-          style={{ bottom: "10%", right: "15%", animationDuration: "6s", animationDelay: "1s" }}
-        />
-        <div
-          className="absolute w-[300px] h-[300px] rounded-full bg-muted/20 blur-3xl transition-all duration-1000 ease-out"
-          style={{ left: `${mousePosition.x - 150}px`, top: `${mousePosition.y - 150}px` }}
-        />
-      </div>
+    <section className="relative min-h-[85vh] flex items-center hero-gradient overflow-hidden">
+      <div className="absolute inset-0 hero-gradient-overlay" />
 
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none opacity-20">
         <Icon
           name="Server"
-          className="absolute text-muted-foreground/30 animate-float"
-          style={{ top: "15%", left: "15%", animationDelay: "0s" } as React.CSSProperties}
-          size={40}
+          className="absolute text-blue-400/30 animate-float"
+          style={{ top: "18%", left: "8%", animationDelay: "0s" } as React.CSSProperties}
+          size={48}
         />
         <Icon
           name="Network"
-          className="absolute text-muted-foreground/30 animate-float"
-          style={{ top: "25%", right: "20%", animationDelay: "2s" } as React.CSSProperties}
-          size={35}
+          className="absolute text-blue-400/20 animate-float"
+          style={{ top: "30%", right: "12%", animationDelay: "2s" } as React.CSSProperties}
+          size={40}
         />
         <Icon
           name="Shield"
-          className="absolute text-muted-foreground/30 animate-float"
-          style={{ bottom: "20%", left: "20%", animationDelay: "1s" } as React.CSSProperties}
-          size={30}
+          className="absolute text-blue-400/20 animate-float"
+          style={{ bottom: "25%", left: "15%", animationDelay: "1s" } as React.CSSProperties}
+          size={36}
+        />
+        <Icon
+          name="HardDrive"
+          className="absolute text-blue-400/15 animate-float"
+          style={{ bottom: "20%", right: "20%", animationDelay: "3s" } as React.CSSProperties}
+          size={32}
         />
       </div>
 
-      <div className="container mx-auto text-center max-w-5xl relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 animate-fade-in-up">
-          <Sparkles className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium text-primary">IT-инфраструктура для малого и среднего бизнеса</span>
-        </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 animate-fade-in-up text-balance">
-          Инфраструктура, которая{" "}
-          <span className="text-primary relative inline-block">
-            работает
-            <svg
-              className="absolute -bottom-2 left-0 w-full"
-              height="12"
-              viewBox="0 0 200 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-8 animate-fade-in-up backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+            <span className="text-sm font-medium text-blue-100">IT-услуги для бизнеса</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up text-white leading-[1.1]">
+            IT‑инфраструктура,
+            <br />
+            <span className="text-blue-400">которая работает</span>
+          </h1>
+
+          <p className="text-lg sm:text-xl text-blue-100/80 mb-10 max-w-2xl animate-fade-in-up animate-delay-100 leading-relaxed">
+            Монтаж сетей, настройка серверов, администрирование и поддержка пользователей. Берём на себя всё ваше IT — от кабеля до стабильной работы.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animate-delay-200 mb-14">
+            <Button
+              size="lg"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-6 text-lg group shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all rounded-xl"
+              asChild
             >
-              <path
-                d="M2 10C50 5 150 5 198 10"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                className="text-primary"
-              />
-            </svg>
-          </span>
-        </h1>
-
-        <p className="text-xl sm:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto animate-fade-in-up animate-delay-100 leading-relaxed">
-          Монтаж СКС, настройка серверов и домена, администрирование, поддержка пользователей. Берём на себя всё ваше IT — от нуля до стабильной работы.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animate-delay-200 mb-12">
-          <Button
-            size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg group shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
-            asChild
-          >
-            <a href="#contact">
-              Получить консультацию
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-2 border-primary/20 text-foreground hover:bg-primary/5 hover:border-primary font-semibold px-8 py-6 text-lg backdrop-blur-sm bg-transparent"
-            asChild
-          >
-            <a href="#services">Наши услуги</a>
-          </Button>
-        </div>
-
-        <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground animate-fade-in-up animate-delay-300">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span>Опыт 7+ лет</span>
+              <a href="#contact">
+                Оставить заявку
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/40 font-semibold px-8 py-6 text-lg backdrop-blur-sm bg-white/5 rounded-xl"
+              asChild
+            >
+              <a href="tel:+79001234567">
+                <Phone className="mr-2 h-5 w-5" />
+                +7 900 123-45-67
+              </a>
+            </Button>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: "0.5s" }} />
-            <span>30+ обслуживаемых компаний</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: "1s" }} />
-            <span>Реакция на заявку за 1 час</span>
+
+          <div className="grid grid-cols-3 gap-6 max-w-lg animate-fade-in-up animate-delay-300">
+            <div className="text-center sm:text-left">
+              <div className="text-3xl sm:text-4xl font-extrabold text-white">7+</div>
+              <div className="text-sm text-blue-200/60 mt-1">лет опыта</div>
+            </div>
+            <div className="text-center sm:text-left">
+              <div className="text-3xl sm:text-4xl font-extrabold text-white">30+</div>
+              <div className="text-sm text-blue-200/60 mt-1">компаний</div>
+            </div>
+            <div className="text-center sm:text-left">
+              <div className="text-3xl sm:text-4xl font-extrabold text-white">1 ч</div>
+              <div className="text-sm text-blue-200/60 mt-1">реакция</div>
+            </div>
           </div>
         </div>
       </div>
