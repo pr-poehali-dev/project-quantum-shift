@@ -4,39 +4,43 @@ import { QuoteFormDialog } from "@/components/QuoteFormDialog"
 
 const pricingTiers = [
   {
-    name: "Базовый",
-    price: "99 900",
+    name: "Разовые работы",
+    price: "По запросу",
+    description: "Одноразовые задачи и проекты",
     features: [
-      "До 5 страниц",
-      "Адаптивный дизайн",
-      "Базовая SEO-оптимизация",
-      "Форма обратной связи",
-      "1 месяц поддержки",
+      "Монтаж СКС / СВН",
+      "Развёртывание сервера",
+      "Настройка почтового сервера",
+      "Подбор и установка оборудования",
+      "Создание инфраструктуры с нуля",
     ],
     highlighted: false,
   },
   {
-    name: "Про",
-    price: "249 900",
+    name: "Абонентское обслуживание",
+    price: "от 15 000",
+    description: "Ежемесячная поддержка вашей IT-инфраструктуры",
     features: [
-      "До 15 страниц",
-      "Премиум-дизайн",
-      "Расширенная SEO-оптимизация",
-      "Интеграция CMS",
-      "Функционал e-commerce",
-      "3 месяца поддержки",
+      "Поддержка пользователей",
+      "Администрирование серверов",
+      "Мониторинг инфраструктуры",
+      "Резервное копирование",
+      "Реакция на инциденты за 1 час",
+      "Ежемесячный отчёт",
     ],
     highlighted: true,
   },
   {
-    name: "Индивидуальный",
+    name: "Комплексный проект",
     price: "По запросу",
+    description: "Полное построение IT-инфраструктуры",
     features: [
-      "Неограниченно страниц",
-      "Кастомный функционал",
-      "API-интеграции",
-      "Персональный менеджер",
-      "6 месяцев поддержки",
+      "Монтаж СКС",
+      "Серверная инфраструктура (AD, GPO, DNS, DHCP)",
+      "СХД и резервное копирование",
+      "Почтовый сервер",
+      "Настройка рабочих мест",
+      "Сопровождение после запуска",
     ],
     highlighted: false,
   },
@@ -60,10 +64,10 @@ export function PricingSection() {
             Прозрачные цены
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance">
-            Выберите <span className="text-primary">идеальный тариф</span> для вашего проекта
+            Выберите <span className="text-primary">подходящий формат</span> работы
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            От стартапов до крупного бизнеса — у нас есть подходящее решение
+            Разовые работы, ежемесячное обслуживание или комплексный проект под ключ
           </p>
         </div>
 
@@ -82,8 +86,9 @@ export function PricingSection() {
                   Популярный
                 </div>
               )}
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl mb-2">{tier.name}</CardTitle>
+              <CardHeader className="text-center pb-4">
+                <CardTitle className="text-2xl mb-1">{tier.name}</CardTitle>
+                <p className="text-sm text-muted-foreground">{tier.description}</p>
                 <div className="mt-4">
                   <span className="text-4xl font-bold">
                     {tier.price === "По запросу" ? (
@@ -91,8 +96,8 @@ export function PricingSection() {
                     ) : (
                       <>
                         <span className="text-lg font-normal text-muted-foreground">от </span>
-                        {tier.price}
-                        <span className="text-lg font-normal text-muted-foreground"> ₽</span>
+                        {tier.price.replace("от ", "")}
+                        <span className="text-lg font-normal text-muted-foreground"> ₽/мес</span>
                       </>
                     )}
                   </span>
@@ -112,7 +117,7 @@ export function PricingSection() {
                   variant={tier.highlighted ? "default" : "outline"}
                   className={`w-full ${tier.highlighted ? "shadow-lg shadow-primary/20" : ""}`}
                 >
-                  {tier.price === "По запросу" ? "Связаться с нами" : "Выбрать тариф"}
+                  {tier.price === "По запросу" ? "Обсудить проект" : "Выбрать тариф"}
                 </QuoteFormDialog>
               </CardContent>
             </Card>
@@ -121,8 +126,8 @@ export function PricingSection() {
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            Все тарифы включают <span className="text-primary font-semibold">бесплатную настройку хостинга</span> и{" "}
-            <span className="text-primary font-semibold">SSL-сертификат</span>
+            Все тарифы включают <span className="text-primary font-semibold">бесплатную консультацию</span> и{" "}
+            <span className="text-primary font-semibold">аудит текущей инфраструктуры</span>
           </p>
         </div>
       </div>
